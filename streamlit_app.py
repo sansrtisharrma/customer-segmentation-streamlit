@@ -92,7 +92,7 @@ elif page == "Segment Insights":
             unsafe_allow_html=True
         )
 
-    st.success("✔ This page represents Explainability & XAI — very impressive for viva")
+    st.success("✔ Business insights extracted from clustering analysis")
 
 # ===================================
 # PAGE 3: Prediction
