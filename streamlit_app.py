@@ -20,9 +20,11 @@ recommendations = {
         2: "Send onboarding emails, welcome coupons & referral offers.",
         3: "Send retention campaigns, reminders, and special win-back deals."
     }
-st.set_page_config(page_title="Customer Segmentation Dashboard",
-                   layout="wide",f
-                   page_icon="📊")
+st.set_page_config(
+    page_title="Customer Segmentation Dashboard",
+    layout="wide",
+    page_icon="📊"
+)
 
 st.title("📊 Customer Segmentation & Recommendation System")
 
