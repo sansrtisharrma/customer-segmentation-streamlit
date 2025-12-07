@@ -21,7 +21,7 @@ recommendations = {
         3: "Send retention campaigns, reminders, and special win-back deals."
     }
 st.set_page_config(page_title="Customer Segmentation Dashboard",
-                   layout="wide",
+                   layout="wide",f
                    page_icon="📊")
 
 st.title("📊 Customer Segmentation & Recommendation System")
@@ -36,6 +36,12 @@ page = st.sidebar.radio("Select Page",
 # ===================================
 if page == "Overview Dashboard":
     st.subheader("📌 Clustered Dataset Preview")
+    st.markdown("### 📌 Key Insights")
+colA, colB, colC = st.columns(3)
+colA.metric("Active Clusters", rfm["Cluster"].nunique())
+colB.metric("Highest Segment Size", rfm["Cluster"].value_counts().max())
+colC.metric("Lowest Segment Size", rfm["Cluster"].value_counts().min())
+
     st.dataframe(rfm.head())
 
     st.markdown("---")
@@ -66,7 +72,20 @@ elif page == "Segment Insights":
     st.subheader("💡 Recommended Business Actions")
 
     for segment, text in recommendations.items():
-        st.info(f"Cluster {segment}: {text}")
+        colors = ["#D4EDDA", "#D1ECF1", "#FFF3CD", "#F8D7DA"]
+for segment, text in recommendations.items():
+    st.markdown(
+        f"""
+        <div style="
+            padding:10px;
+            border-radius:8px;
+            background:{colors[segment]};
+            font-size:16px;
+            margin-bottom:8px;">
+            <b>Cluster {segment}:</b> {text}
+        </div>
+        """, unsafe_allow_html=True
+    )
 
     st.success("✔ This page represents Explainability & XAI — very impressive for viva")
 
@@ -100,7 +119,22 @@ elif page == "Predict Segment":
             3: "At-Risk Churn Customer"
         }
         st.write("📌 Interpretation:", explanation.get(cluster))
+        persona = {
+    0: "This customer is loyal and engages frequently — ideal for retention programs.",
+    1: "This customer responds to offers and discounts — best for promotional campaigns.",
+    2: "This customer is new or minimally engaged — requires onboarding nurturing.",
+    3: "This customer is losing interest — needs win-back messaging."
+}
+
+st.info(f"👤 Customer Persona Insight: {persona.get(cluster)}")
 
         st.markdown("---")
         st.subheader("📌 Recommended Business Action:")
-        st.warning(recommendations.get(cluster))
+        st.markdown(
+    f"""
+    <div style="padding:12px;border-radius:8px;background:#fff3cd;color:#856404;font-size:16px">
+        📌 <b>Recommended Strategy:</b> {recommendations.get(cluster)}
+    </div>
+    """, unsafe_allow_html=True
+)
+
