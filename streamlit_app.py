@@ -14,7 +14,12 @@ def load_artifacts():
     return rfm_data, scaler, model
 
 rfm, scaler, model = load_artifacts()
-
+recommendations = {
+        0: "Offer loyalty rewards, exclusive previews & VIP sales.",
+        1: "Send discount campaigns and cashback offers.",
+        2: "Send onboarding emails, welcome coupons & referral offers.",
+        3: "Send retention campaigns, reminders, and special win-back deals."
+    }
 st.set_page_config(page_title="Customer Segmentation Dashboard",
                    layout="wide",
                    page_icon="📊")
@@ -59,13 +64,6 @@ elif page == "Segment Insights":
     st.markdown("---")
 
     st.subheader("💡 Recommended Business Actions")
-
-    recommendations = {
-        0: "Offer loyalty rewards, exclusive previews & VIP sales.",
-        1: "Send discount campaigns and cashback offers.",
-        2: "Send onboarding emails, welcome coupons & referral offers.",
-        3: "Send retention campaigns, reminders, and special win-back deals."
-    }
 
     for segment, text in recommendations.items():
         st.info(f"Cluster {segment}: {text}")
