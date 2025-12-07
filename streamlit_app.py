@@ -61,7 +61,7 @@ if page == "Overview Dashboard":
         st.metric("Total Customers", len(rfm))
         st.metric("Number of Segments", rfm["Cluster"].nunique())
 
-    st.success("✔ Use this page screenshot in thesis implementation chapter")
+    st.success("Customer segments successfully visualized")
 
 # ===================================
 # PAGE 2: Segment Insights
