@@ -39,10 +39,10 @@ page = st.sidebar.radio("Select Page",
 if page == "Overview Dashboard":
     st.subheader("📌 Clustered Dataset Preview")
     st.markdown("### 📌 Key Insights")
-colA, colB, colC = st.columns(3)
-colA.metric("Active Clusters", rfm["Cluster"].nunique())
-colB.metric("Highest Segment Size", rfm["Cluster"].value_counts().max())
-colC.metric("Lowest Segment Size", rfm["Cluster"].value_counts().min())
+    colA, colB, colC = st.columns(3)
+    colA.metric("Active Clusters", rfm["Cluster"].nunique())
+    colB.metric("Highest Segment Size", rfm["Cluster"].value_counts().max())
+    colC.metric("Lowest Segment Size", rfm["Cluster"].value_counts().min())
 
     st.dataframe(rfm.head())
 
